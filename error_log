@@ -1,0 +1,8 @@
+[29-Apr-2024 06:55:29 UTC] PHP Fatal error:  Cannot use BookneticApp\Providers\DB\Model as Model because the name is already in use in /home3/justdigi/dhvani.justdigitalgurus.com/booknetic/app/Models/Staff.php on line 8
+[29-Apr-2024 06:56:13 UTC] PHP Fatal error:  Trait "BookneticApp\Providers\DB\MultiTenant" not found in /home3/justdigi/dhvani.justdigitalgurus.com/booknetic/app/Models/Staff.php on line 12
+[29-Apr-2024 07:01:00 UTC] PHP Fatal error:  Trait "BookneticApp\Providers\Translation\Translator" not found in /home3/justdigi/dhvani.justdigitalgurus.com/booknetic/app/Models/Staff.php on line 12
+[29-Apr-2024 07:01:24 UTC] PHP Fatal error:  Cannot redeclare non static Illuminate\Database\Eloquent\Model::$relations as static App\Models\Staff::$relations in /home3/justdigi/dhvani.justdigitalgurus.com/booknetic/app/Models/Staff.php on line 12
+[29-Apr-2024 07:04:00 UTC] PHP Fatal error:  Trait "BookneticApp\Providers\DB\MultiTenant" not found in /home3/justdigi/dhvani.justdigitalgurus.com/booknetic/app/Models/Staff.php on line 13
+[29-Apr-2024 07:04:34 UTC] PHP Fatal error:  Cannot redeclare non static Illuminate\Database\Eloquent\Model::$relations as static App\Models\Staff::$relations in /home3/justdigi/dhvani.justdigitalgurus.com/booknetic/app/Models/Staff.php on line 13
+[29-Apr-2024 07:11:33 UTC] PHP Fatal error:  Cannot use BookneticApp\Providers\DB\Model as Model because the name is already in use in /home3/justdigi/dhvani.justdigitalgurus.com/booknetic/app/Models/Customer.php on line 10
+[29-Apr-2024 07:11:57 UTC] PHP Fatal error:  Trait "BookneticApp\Providers\DB\MultiTenant" not found in /home3/justdigi/dhvani.justdigitalgurus.com/booknetic/app/Models/Customer.php on line 13

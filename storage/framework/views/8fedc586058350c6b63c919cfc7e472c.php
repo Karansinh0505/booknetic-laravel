@@ -1,16 +1,14 @@
-@extends('layouts.light.master')
-@section('title', 'Customers')
+<?php $__env->startSection('title', 'Customers'); ?>
 
-@section('css')
-    <link rel="stylesheet" type="text/css" href="{{ url('assets/css/dropzone.css') }}">
+<?php $__env->startSection('css'); ?>
+    <link rel="stylesheet" type="text/css" href="<?php echo e(url('assets/css/dropzone.css')); ?>">
 
-    {{-- <link rel="stylesheet" type="text/css" href="{{route('/')}}/assets/css/datatables.css">
-<link rel="stylesheet" type="text/css" href="{{route('/')}}/assets/css/datatable-extension.css"> --}}
-    <link rel="stylesheet" type="text/css" href="{{ route('/') }}/assets/css/select2.css">
-    <link rel="stylesheet" type="text/css" href="{{ route('/') }}assets/css/timepicker.css">
-@endsection
+    
+    <link rel="stylesheet" type="text/css" href="<?php echo e(route('/')); ?>/assets/css/select2.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(route('/')); ?>assets/css/timepicker.css">
+<?php $__env->stopSection(); ?>
 
-@section('style')
+<?php $__env->startSection('style'); ?>
     <style>
         .dropzone {
             padding: 0px;
@@ -88,19 +86,19 @@
             border-color: #c0c0c0 !important;
         }
     </style>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('breadcrumb-title')
+<?php $__env->startSection('breadcrumb-title'); ?>
     <h2>Students<span></span></h2>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('breadcrumb-items')
+<?php $__env->startSection('breadcrumb-items'); ?>
     <!-- <li class="breadcrumb-item">Tables</li>
                          <li class="breadcrumb-item">Extension Data Tables</li> -->
     <li class="breadcrumb-item active">Students</li>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
@@ -113,7 +111,7 @@
                             </div>
                             <div class="col-md-4 col-lg-3">
                                 <!-- Add Student Popup-->
-                                {{-- <button class="btn btn-primary" type="button" data-toggle="modal" data-target=".bd-example-modal-lg">Add Customers</button> --}}
+                                
                                 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
                                     aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">
@@ -125,8 +123,8 @@
                                             </div>
                                             <div class="modal-body">
                                                 <form class="form theme-form needs-validation"
-                                                    action="{{ route('customers.store') }}" novalidat method="post">
-                                                    @csrf
+                                                    action="<?php echo e(route('customers.store')); ?>" novalidat method="post">
+                                                    <?php echo csrf_field(); ?>
                                                     <div class="card-body">
 
 
@@ -331,28 +329,28 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($students as $item)
+                                    <?php $__currentLoopData = $students; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <tr>
                                             <td><input id="checkbox-primary-1" type="checkbox"></td>
-                                            <td>{{ $item->id }}</td>
-                                            <td><span class="badge badge-success">{{ $item->status }}</span></td>
+                                            <td><?php echo e($item->id); ?></td>
+                                            <td><span class="badge badge-success"><?php echo e($item->status); ?></span></td>
                                             <td data-toggle="modal"
-                                                data-target=".bd-student-popup-modal-lg{{ $item->id }}">
-                                                {{ $item->parents_name }}</td>
-                                            <td>{{ $item->phone }}</td>
-                                            <td>{{ $item->email }}</td>
-                                            <td>{{ $item->category }}</td>
-                                            <td>{{ $item->time }}</td>
+                                                data-target=".bd-student-popup-modal-lg<?php echo e($item->id); ?>">
+                                                <?php echo e($item->parents_name); ?></td>
+                                            <td><?php echo e($item->phone); ?></td>
+                                            <td><?php echo e($item->email); ?></td>
+                                            <td><?php echo e($item->category); ?></td>
+                                            <td><?php echo e($item->time); ?></td>
                                         </tr>
                                         <!-- Edit Student Popup Start -->
-                                        <div class="modal fade bd-student-popup-modal-lg{{ $item->id }}"
+                                        <div class="modal fade bd-student-popup-modal-lg<?php echo e($item->id); ?>"
                                             tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
                                             aria-hidden="true">
                                             <div class="modal-dialog modal-lg">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h4 class="modal-title" id="myLargeModalLabel">
-                                                            {{ $item->parents_name }}</h4>
+                                                            <?php echo e($item->parents_name); ?></h4>
                                                         <div class="">
                                                             <button class="btn btn-primary btn-sm" type="button"
                                                                 data-toggle="modal" data-target=".repertoire">
@@ -367,10 +365,10 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         <form class="form theme-form"
-                                                            action="{{ route('customers.update', $item->id) }}"
+                                                            action="<?php echo e(route('customers.update', $item->id)); ?>"
                                                             method="post">
-                                                            @csrf
-                                                            @method('PUT')
+                                                            <?php echo csrf_field(); ?>
+                                                            <?php echo method_field('PUT'); ?>
                                                             <div class="card-body">
 
                                                                 <div class="row">
@@ -382,7 +380,7 @@
                                                                                 id="exampleFormControlInput1"
                                                                                 type="tel" placeholder="Enter Phone"
                                                                                 name="phone"
-                                                                                value="{{ $item->phone }}">
+                                                                                value="<?php echo e($item->phone); ?>">
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-4">
@@ -394,7 +392,7 @@
                                                                                 type="email"
                                                                                 placeholder="name@example.com"
                                                                                 name="email"
-                                                                                value="{{ $item->email }}">
+                                                                                value="<?php echo e($item->email); ?>">
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-4">
@@ -406,7 +404,7 @@
                                                                                 type="text"
                                                                                 placeholder="Enter Last Name"
                                                                                 name="parents_name"
-                                                                                value="{{ $item->parents_name }}">
+                                                                                value="<?php echo e($item->parents_name); ?>">
                                                                         </div>
                                                                     </div>
 
@@ -417,19 +415,19 @@
                                                                             <select class="form-control col-sm-12"
                                                                                 name="category">
                                                                                 <option value="AL"
-                                                                                    {{ $item->category == 'AL' ? 'selected' : '' }}>
+                                                                                    <?php echo e($item->category == 'AL' ? 'selected' : ''); ?>>
                                                                                     Alabama</option>
                                                                                 <option value="WY"
-                                                                                    {{ $item->category == 'WY' ? 'selected' : '' }}>
+                                                                                    <?php echo e($item->category == 'WY' ? 'selected' : ''); ?>>
                                                                                     Wyoming</option>
                                                                                 <option value="CO"
-                                                                                    {{ $item->category == 'CO' ? 'selected' : '' }}>
+                                                                                    <?php echo e($item->category == 'CO' ? 'selected' : ''); ?>>
                                                                                     Coming</option>
                                                                                 <option value="HD"
-                                                                                    {{ $item->category == 'HD' ? 'selected' : '' }}>
+                                                                                    <?php echo e($item->category == 'HD' ? 'selected' : ''); ?>>
                                                                                     Hanry Die</option>
                                                                                 <option value="JD"
-                                                                                    {{ $item->category == 'JD' ? 'selected' : '' }}>
+                                                                                    <?php echo e($item->category == 'JD' ? 'selected' : ''); ?>>
                                                                                     John Doe</option>
                                                                             </select>
                                                                         </div>
@@ -441,19 +439,19 @@
                                                                             <select class="form-control col-sm-12"
                                                                                 name="timeslot_day">
                                                                                 <option value="Monday"
-                                                                                    {{ $item->status == 'Monday' ? 'selected' : '' }}>
+                                                                                    <?php echo e($item->status == 'Monday' ? 'selected' : ''); ?>>
                                                                                     Monday</option>
                                                                                 <option value="Tuesday"
-                                                                                    {{ $item->status == 'Tuesday' ? 'selected' : '' }}>
+                                                                                    <?php echo e($item->status == 'Tuesday' ? 'selected' : ''); ?>>
                                                                                     Tuesday</option>
                                                                                 <option value="Wednesday"
-                                                                                    {{ $item->status == 'Wednesday' ? 'selected' : '' }}>
+                                                                                    <?php echo e($item->status == 'Wednesday' ? 'selected' : ''); ?>>
                                                                                     Wednesday</option>
                                                                                 <option value="Thursday"
-                                                                                    {{ $item->status == 'Thursday' ? 'selected' : '' }}>
+                                                                                    <?php echo e($item->status == 'Thursday' ? 'selected' : ''); ?>>
                                                                                     Thursday</option>
                                                                                 <option value="Friday"
-                                                                                    {{ $item->status == 'Friday' ? 'selected' : '' }}>
+                                                                                    <?php echo e($item->status == 'Friday' ? 'selected' : ''); ?>>
                                                                                     Friday</option>
                                                                             </select>
                                                                         </div>
@@ -464,7 +462,7 @@
                                                                                 for="exampleFormControlInput5">Time</label>
                                                                             <input type="time" class="form-control"
                                                                                 name="time" id="time"
-                                                                                value="{{ $item->time }}">
+                                                                                value="<?php echo e($item->time); ?>">
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-4">
@@ -473,7 +471,7 @@
                                                                                 Bitrh</label>
                                                                             <input type="date" class="form-control"
                                                                                 name="date" id="date"
-                                                                                value="{{ $item->birthdate }}">
+                                                                                value="<?php echo e($item->birthdate); ?>">
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-4">
@@ -483,13 +481,13 @@
                                                                             <select class="form-control col-sm-12"
                                                                                 name="gender">
                                                                                 <option value="male"
-                                                                                    {{ $item->gender == 'male' ? 'selected' : '' }}>
+                                                                                    <?php echo e($item->gender == 'male' ? 'selected' : ''); ?>>
                                                                                     Male</option>
                                                                                 <option value="female"
-                                                                                    {{ $item->gender == 'female' ? 'selected' : '' }}>
+                                                                                    <?php echo e($item->gender == 'female' ? 'selected' : ''); ?>>
                                                                                     Female</option>
                                                                                 <option value="not_say"
-                                                                                    {{ $item->gender == 'not_say' ? 'selected' : '' }}>
+                                                                                    <?php echo e($item->gender == 'not_say' ? 'selected' : ''); ?>>
                                                                                     Rather not say</option>
                                                                             </select>
                                                                         </div>
@@ -501,16 +499,16 @@
                                                                             <select class="form-control col-sm-12"
                                                                                 name="status">
                                                                                 <option value="Active"
-                                                                                    {{ $item->status == 'Active' ? 'selected' : '' }}>
+                                                                                    <?php echo e($item->status == 'Active' ? 'selected' : ''); ?>>
                                                                                     Active</option>
                                                                                 <option value="Inactive"
-                                                                                    {{ $item->status == 'Inactive' ? 'selected' : '' }}>
+                                                                                    <?php echo e($item->status == 'Inactive' ? 'selected' : ''); ?>>
                                                                                     Inactive</option>
                                                                                 <option value="Trial"
-                                                                                    {{ $item->status == 'Trial' ? 'selected' : '' }}>
+                                                                                    <?php echo e($item->status == 'Trial' ? 'selected' : ''); ?>>
                                                                                     Trial</option>
                                                                                 <option value="Lead"
-                                                                                    {{ $item->status == 'Lead' ? 'selected' : '' }}>
+                                                                                    <?php echo e($item->status == 'Lead' ? 'selected' : ''); ?>>
                                                                                     Lead</option>
                                                                             </select>
                                                                         </div>
@@ -540,7 +538,7 @@
 
                                         </div>
                                         <!-- Edit Student Popup end -->
-                                    @endforeach
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </tbody>
                             </table>
                         </div>
@@ -556,23 +554,18 @@
                                 <div class="modal-header">
                                     <h4 class="modal-title" id="myLargeModalLabel">John San</h4>
                                     <div class="">
-                                        <button class="btn btn-primary btn-sm" type="button" onclick="showForm('.repertoireForm')">
+                                        <button class="btn btn-primary btn-sm" type="button" data-toggle="modal"
+                                            data-target=".repertoire">
                                             Repertoire
                                         </button>
-                                        <button class="btn btn-dark-success btn-sm" type="button" onclick="showForm('.aptLogsForm')">Appt Logs</button>
-                                        <button class="btn btn-success btn-sm" type="button" onclick="showForm('.paymentMethodForm')">Payment Method</button>
-                                        <button class="btn btn-danger btn-sm" type="button" onclick="showForm('.invoiceForm')">Invoice</button>
+                                        <button class="btn btn-dark-success btn-sm">Appt Logs</button>
+                                        <button class="btn btn-success btn-sm">Payment Method</button>
+                                        <button class="btn btn-danger btn-sm">Invoice</button>
                                     </div>
                                 </div>
                                 <div class="modal-body">
-                                    {{-- <form class="form theme-form">
-
-                                    </form> --}}
-
-
-                                    {{-- Repertoire start--}}
-                                    <form class="form theme-form repertoireForm" style="height: 90vh;">
-                                       <div class="card-body" style="display: ; height: 80vh;">
+                                    <form class="form theme-form">
+                                        <div class="card-body">
                                             <div class="card-title">Add Repertoire</div>
                                             <div class="form-group">
                                                 <label class="form-label text-center w-100">Upload a File</label>
@@ -617,48 +610,6 @@
                                             <button class="btn btn-pill btn-primary" type="submit">Submit</button>
                                         </div>
                                     </form>
-                                    {{-- Appt Logs start --}}
-                                    <form class="form theme-form aptLogsForm" style="display: none; height: 90vh;">
-                                        <div class="card-body" style="display: ; height: 80vh;">
-                                            <div class="card-title">Add Repertoire</div>
-                                            <div class="form-group">
-                                                <label class="form-label text-center w-100">Upload a File</label>
-                                                <div class="row">
-                                                    <div class="col-12 col-md-4">
-                                                        <div class="form-group mb-4">
-                                                            <input type="date" class="form-control"
-                                                                    name="date" id="date">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12 col-md-4">
-                                                        <div class="form-group mb-4">
-                                                            <input type="date" class="form-control"
-                                                                    name="date" id="date">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-footer text-right p-2">
-                                            <button class="btn btn-pill btn-light" type="button" data-dismiss="modal"
-                                                aria-label="Close">Close</button>
-                                            <button class="btn btn-pill btn-primary" type="submit">Submit</button>
-                                        </div>
-                                    </form>
-                                    {{-- Payment Method start --}}
-                                    <form class="form theme-form paymentMethodForm" style="display: none;height: 90vh;">
-                                        <div class="card-body" style="display: ; height: 80vh;">
-                                            <h2> Payment Method</h2>
-                                            <!-- Payment Method form content -->
-                                        </div>
-                                    </form>
-                                    {{-- Invoice start --}}
-                                    <form class="form theme-form invoiceForm" style="display: none;height: 90vh;">
-                                        <div class="card-body" style="display: ; height: 80vh;">
-                                         <h2> Invoice form</h2>
-                                        <!-- Invoice form content -->
-                                    </form>
-
                                 </div>
                             </div>
                         </div>
@@ -715,17 +666,17 @@
         </div>
     </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('script')
-    <script src="{{ url('assets/js/dropzone/dropzone.js') }}"></script>
-    <script src="{{ url('assets/js/dropzone/dropzone-script.js') }}"></script>
-    <script src="{{ route('/') }}/assets/js/select2/select2.full.min.js"></script>
-    <script src="{{ route('/') }}/assets/js/select2/select2-custom.js"></script>
-    <script src="{{ route('/') }}/assets/js/time-picker/jquery-clockpicker.min.js"></script>
-    <script src="{{ route('/') }}/assets/js/time-picker/highlight.min.js"></script>
-    <script src="{{ route('/') }}/assets/js/time-picker/clockpicker.js"></script>
-    <script src="{{ route('/') }}/assets/js/script.js"></script>
+<?php $__env->startSection('script'); ?>
+    <script src="<?php echo e(url('assets/js/dropzone/dropzone.js')); ?>"></script>
+    <script src="<?php echo e(url('assets/js/dropzone/dropzone-script.js')); ?>"></script>
+    <script src="<?php echo e(route('/')); ?>/assets/js/select2/select2.full.min.js"></script>
+    <script src="<?php echo e(route('/')); ?>/assets/js/select2/select2-custom.js"></script>
+    <script src="<?php echo e(route('/')); ?>/assets/js/time-picker/jquery-clockpicker.min.js"></script>
+    <script src="<?php echo e(route('/')); ?>/assets/js/time-picker/highlight.min.js"></script>
+    <script src="<?php echo e(route('/')); ?>/assets/js/time-picker/clockpicker.js"></script>
+    <script src="<?php echo e(route('/')); ?>/assets/js/script.js"></script>
 
     <script>
         document.querySelectorAll('#status option').forEach(option => {
@@ -736,17 +687,12 @@
         });
     </script>
     <script>
-    function showForm(formClass) {
-        $('.form').hide();
-        $(formClass).show();
-    }
-</script>
-
-    <script>
         // Initialize Select2
         $(document).ready(function() {
             $('.js-example-placeholder-multiple').select2();
         });
     </script>
-    {{-- <script src="{{route('/')}}/assets/js/datatable/datatable-extension/custom.js"></script> --}}
-@endsection
+    
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.light.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH F:\raj\laravel_booknetic\resources\views/customers/index.blade.php ENDPATH**/ ?>
